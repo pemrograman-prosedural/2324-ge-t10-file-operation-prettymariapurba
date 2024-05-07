@@ -1,88 +1,130 @@
 #include "student.h"
-#include "string.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+/**
+ * @brief Define the complete function definition here. Be sure to enlist the prototype of each function
+ * defined here in the corresponding header file.
+ *
+ */
 
-struct student_t create_student(char *std_id, char *std_name, char *std_year, enum gender_t std_gender){
-    struct student_t std;
-    strcpy(std.id, std_id);
-    strcpy (std.name, std_name);
-    strcpy (std.year, std_year);
-    std.gender = std_gender;
-    std.dorm = NULL;
-    return std;
-    }
+void getString(char *str)
+{
+    str[0] = '\0';
+    int c = 0;
 
+    do
+    {
 
-void student_print_detail(struct student_t *_student, unsigned short int _size){
+        char x = getchar();
+        if (x == '\r')
 
-    for(int i = 0 ; i<_size; i++){
-        char dorm_name[15];
-        if(_student[i].dorm == NULL) strcpy(dorm_name, "unassigned");
-        else strcpy(dorm_name, _student[i].dorm->name);
+        {
+            continue;
+        }
+        if (x == '\n')
+        {
+            break;
+        }
+        str[c] = x;
+        str[++c] = '\0';
+    } while (1);
+}
 
+struct student_t create_student(char *_id, char *_name, char *_year,
+                                enum gender_t _gender)
+{
+    struct student_t student;
+    strcpy(student.id, _id);
+    strcpy(student.name, _name);
+    strcpy(student.year, _year);
+    student.gender = _gender;
+    student.dorm = NULL;
+    return student;
+}
 
-        printf("%s|%s|%s|%s|%s\n", _student[i].id, _student[i].name, _student[i].year, gender_to_text (_student[i].gender), dorm_name);
-
+void student_print_all(struct student_t *_students, int _countStudent)
+{
+    for (int i = 0; i < _countStudent; i++)
+    {
+        // 12S22002|Jeremy Nainggolan|2022|male
+        printf("%s|%s|%s|%s\n", _students[i].id, _students[i].name, _students[i].year, gender_to_teks(_students[i].gender));
     }
 }
 
-void student_print_all(struct student_t *_student, unsigned short int _size){
+void student_print_all_detail(struct student_t *_students, int _countStudent)
+{
 
-    for(int i = 0 ; i < _size; i++){
-    printf("%s|%s|%s|%s\n", _student[i].id, _student[i].name, _student[i].year, gender_to_text (_student[i].gender));
-    
+    for (int i = 0; i < _countStudent; i++)
+    {
+        if (_students[i].dorm == NULL)
+        {
+            printf("%s|%s|%s|%s|unassigned\n", _students[i].id, _students[i].name, _students[i].year, gender_to_teks(_students[i].gender));
+        }
+        else if (_students[i].dorm == NULL)
+        {
+            printf("%s|%s|%s|%s|left\n", _students[i].id, _students[i].name, _students[i].year, gender_to_teks(_students[i].gender));
+        }
+        else
+        {
+            printf("%s|%s|%s|%s|%s\n", _students[i].id, _students[i].name, _students[i].year, gender_to_teks(_students[i].gender), _students[i].dorm->name);
+        }
     }
 }
 
-unsigned short int get_index_student (struct student_t *_student, unsigned short int size_std, char *_idstd){
-    unsigned short int counter_std, i;
-
-    for (i = 0; i < size_std; i++){
-                if(strcmp(_student[i].id, _idstd) == 0)
+// assign-student#12S22001#Antiokia
+void assign_student(struct student_t *_student, struct dorm_t *_dorm, char *id, char *dorm_name, int _countDorm, int _countStudent)
+{
+    for (int i = 0; i < _countStudent; i++)
+    {
+        if (strcmp(_student[i].id, id) == 0)
+        {
+            for (int j = 0; j < _countDorm; j++)
+            {
+                if (strcmp(_dorm[j].name, dorm_name) == 0)
                 {
-                    counter_std = i;
-                    break;
+                    if (_student[i].gender == _dorm[j].gender)
+                    {
+                        if (_dorm[j].residents_num < _dorm[j].capacity)
+                        {
+                            _student[i].dorm = &_dorm[j];
+                            _dorm[j].residents_num++;
+                        }
+                    }
                 }
-    }
-    return counter_std;
-    
-}
-
-unsigned short int get_index_dorm (struct dorm_t *_dorm, unsigned short int size_drm, char *_name){
-    unsigned short int counter_drm, i;
-
-    for (i = 0; i < size_drm; i++){
-                if(strcmp(_dorm[i].name, _name) == 0)
-                {
-                    counter_drm = i;
-                    break;
-                }
-    }
-    return counter_drm;
-    
-}
-void assign_student(struct student_t *_student, struct dorm_t *_dorm, unsigned short int idx_std, unsigned short int idx_drm)
-{       
-        
-        if (_dorm[idx_drm].capacity > _dorm[idx_drm].residents_num){
-
-            if (_dorm[idx_drm].gender == _student[idx_std].gender){
-            _student[idx_std].dorm = &_dorm[idx_drm];
-            _dorm[idx_drm].residents_num++;
             }
         }
+    }
 }
 
-void move_student(struct student_t *_student, struct dorm_t *_dorm, struct dorm_t *old_dorm, char *id, char *dorm_name)
+
+
+
+
+
+void moving_student(struct student_t *_student, struct dorm_t *_dorm, char *id, char *dorm_name, int _countDorm, int _countStudent)
 {
-    if (_dorm->residents_num < _dorm->capacity)
+    for (int i = 0; i < _countStudent; i++)
     {
-        if (_dorm->gender == _student->gender)
-        {   _student->dorm = _dorm;
-            old_dorm->residents_num--;
-            _dorm->residents_num++;
+        if (strcmp(_student[i].id, id) == 0)
+        {
+            for (int j = 0; j < _countDorm; j++)
+            {
+                if (strcmp(_dorm[j].name, dorm_name) == 0)
+                {
+                    if (_dorm[j].residents_num < _dorm[j].capacity)
+                    {
+                        if (_student[i].dorm != NULL)
+                        {
+                            _student[i].dorm->residents_num--;
+                        }
+                        _student[i].dorm = &_dorm[j];
+                        _dorm[j].residents_num++;
+                    }
+                }
+            }
         }
     }
 }
+

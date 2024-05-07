@@ -1,0 +1,35 @@
+{
+    "tests": [
+      {
+        "name": "t11&#45;01&#45;01",
+        "setup": "make compile",
+        "run": "make -s test_01",
+        "input": "dorm-print-all-detail\r\nstudent-print-all-detail\r\n---\r\n",
+        "output": "Antiokia|5|male|0\r\nMamre|5|male|0\r\nSilo|5|male|0\r\nMahanaim|5|male|0\r\nNazaret|5|male|0\r\n12S22001|Winfrey Nainggolan|2022|male|unassigned\r\n12S22002|Jeremy Nainggolan|2022|male|unassigned\r\n12S22009|Dolok Butarbutar|2022|male|unassigned\r\n12S22010|Reinaldy Hutapea|2022|male|unassigned\r\n12S22014|Kezia Hutagaol|2022|female|unassigned\r\n",
+        "comparison": "exact",
+        "timeout": 1,
+        "points": 30
+      },
+      {
+        "name": "t11&#45;02&#45;01",
+        "setup": "make compile",
+        "run": "make -s test_02",
+        "input": "student-add#12S22015#Angelina Nadeak#2022#female\r\nstudent-add#12S22024#Pimpin Loi#2022#male\r\nstudent-add#12S22025#Bronson Siallagan#2022#male\r\nstudent-add#12S22026#Ruben Sianipar#2022#male\r\nstudent-add#12S22027#Ferry Panjaitan#2022#male\r\nstudent-print-all\r\ndorm-add#Antiokia#20#male\r\ndorm-add#Mamre#20#male\r\ndorm-add#Silo#20#male\r\ndorm-add#Mahanaim#20#male\r\ndorm-add#Nazaret#20#male\r\ndorm-add#Pniel#20#female\r\ndorm-add#Kapernaum#20#male\r\ndorm-print-all\r\nstudent-print-all-detail\r\ndorm-print-all-detail\r\n---\r\n",
+        "output": "12S22001|Winfrey Nainggolan|2022|male\r\n12S22002|Jeremy Nainggolan|2022|male\r\n12S22009|Dolok Butarbutar|2022|male\r\n12S22010|Reinaldy Hutapea|2022|male\r\n12S22014|Kezia Hutagaol|2022|female\r\n12S22015|Angelina Nadeak|2022|female\r\n12S22024|Pimpin Loi|2022|male\r\n12S22025|Bronson Siallagan|2022|male\r\n12S22026|Ruben Sianipar|2022|male\r\n12S22027|Ferry Panjaitan|2022|male\r\nAntiokia|5|male\r\nMamre|5|male\r\nSilo|5|male\r\nMahanaim|5|male\r\nNazaret|5|male\r\nAntiokia|20|male\r\nMamre|20|male\r\nSilo|20|male\r\nMahanaim|20|male\r\nNazaret|20|male\r\nPniel|20|female\r\nKapernaum|20|male\r\n12S22001|Winfrey Nainggolan|2022|male|unassigned\r\n12S22002|Jeremy Nainggolan|2022|male|unassigned\r\n12S22009|Dolok Butarbutar|2022|male|unassigned\r\n12S22010|Reinaldy Hutapea|2022|male|unassigned\r\n12S22014|Kezia Hutagaol|2022|female|unassigned\r\n12S22015|Angelina Nadeak|2022|female|unassigned\r\n12S22024|Pimpin Loi|2022|male|unassigned\r\n12S22025|Bronson Siallagan|2022|male|unassigned\r\n12S22026|Ruben Sianipar|2022|male|unassigned\r\n12S22027|Ferry Panjaitan|2022|male|unassigned\r\nAntiokia|5|male|0\r\nMamre|5|male|0\r\nSilo|5|male|0\r\nMahanaim|5|male|0\r\nNazaret|5|male|0\r\nAntiokia|20|male|0\r\nMamre|20|male|0\r\nSilo|20|male|0\r\nMahanaim|20|male|0\r\nNazaret|20|male|0\r\nPniel|20|female|0\r\nKapernaum|20|male|0\r\nb0678b2356498acd510f1e67a2ed935d05e5bf29  ./storage/student-repository.txt\r\n09413ed6311579c5ede8c99099936fafce98f5ca  ./storage/dorm-repository.txt\r\n",
+        "comparison": "exact",
+        "timeout": 1,
+        "points": 30
+      },
+      {
+        "name": "t11&#45;02&#45;02",
+        "setup": "make compile",
+        "run": "make -s test_02",
+        "input": "student-add#12S22015#Angelina Nadeak#2022#female\r\nstudent-add#12S22024#Pimpin Loi#2022#male\r\nstudent-add#12S22025#Bronson Siallagan#2022#male\r\nstudent-add#12S22026#Ruben Sianipar#2022#male\r\nstudent-add#12S22027#Ferry Panjaitan#2022#male\r\ndorm-add#Antiokia#5#male\r\ndorm-add#Mamre#5#male\r\ndorm-add#Silo#5#male\r\ndorm-add#Mahanaim#5#male\r\ndorm-add#Nazaret#5#male\r\ndorm-add#Pniel#5#female\r\ndorm-add#Kapernaum#5#male\r\nstudent-print-all-detail\r\ndorm-print-all-detail\r\nassign-student#12S22001#Antiokia\r\nassign-student#12S22002#Antiokia\r\nassign-student#12S22009#Antiokia\r\nassign-student#12S22010#Antiokia\r\nassign-student#12S22014#Pniel\r\nassign-student#12S22015#Pniel\r\nassign-student#12S22024#Antiokia\r\nassign-student#12S22025#Antiokia\r\nassign-student#12S22026#Antiokia\r\nassign-student#12S22027#Antiokia\r\nstudent-print-all-detail\r\ndorm-print-all-detail\r\n---\r\n",
+        "output": "12S22001|Winfrey Nainggolan|2022|male|unassigned\r\n12S22002|Jeremy Nainggolan|2022|male|unassigned\r\n12S22009|Dolok Butarbutar|2022|male|unassigned\r\n12S22010|Reinaldy Hutapea|2022|male|unassigned\r\n12S22014|Kezia Hutagaol|2022|female|unassigned\r\n12S22015|Angelina Nadeak|2022|female|unassigned\r\n12S22024|Pimpin Loi|2022|male|unassigned\r\n12S22025|Bronson Siallagan|2022|male|unassigned\r\n12S22026|Ruben Sianipar|2022|male|unassigned\r\n12S22027|Ferry Panjaitan|2022|male|unassigned\r\nAntiokia|5|male|0\r\nMamre|5|male|0\r\nSilo|5|male|0\r\nMahanaim|5|male|0\r\nNazaret|5|male|0\r\nAntiokia|5|male|0\r\nMamre|5|male|0\r\nSilo|5|male|0\r\nMahanaim|5|male|0\r\nNazaret|5|male|0\r\nPniel|5|female|0\r\nKapernaum|5|male|0\r\n12S22001|Winfrey Nainggolan|2022|male|Antiokia\r\n12S22002|Jeremy Nainggolan|2022|male|Antiokia\r\n12S22009|Dolok Butarbutar|2022|male|Antiokia\r\n12S22010|Reinaldy Hutapea|2022|male|Antiokia\r\n12S22014|Kezia Hutagaol|2022|female|Pniel\r\n12S22015|Angelina Nadeak|2022|female|Pniel\r\n12S22024|Pimpin Loi|2022|male|Antiokia\r\n12S22025|Bronson Siallagan|2022|male|unassigned\r\n12S22026|Ruben Sianipar|2022|male|unassigned\r\n12S22027|Ferry Panjaitan|2022|male|unassigned\r\nAntiokia|5|male|5\r\nMamre|5|male|0\r\nSilo|5|male|0\r\nMahanaim|5|male|0\r\nNazaret|5|male|0\r\nAntiokia|5|male|0\r\nMamre|5|male|0\r\nSilo|5|male|0\r\nMahanaim|5|male|0\r\nNazaret|5|male|0\r\nPniel|5|female|2\r\nKapernaum|5|male|0\r\nb0678b2356498acd510f1e67a2ed935d05e5bf29  ./storage/student-repository.txt\r\n37c7a4dcaa0ae0bcfd4661f8a6251ca3b99262f6  ./storage/dorm-repository.txt\r\n",
+        "comparison": "exact",
+        "timeout": 1,
+        "points": 40
+      }
+    ]
+  }
+  
