@@ -181,11 +181,11 @@ int main(int _argc, char **_argv)
                     fprintf(outFpDorm, "%s\n", toStringDorm(dorms[idxDorm - 1]));
                 }
             }
-            else if (strcmp(str, "dorm-print-all") == 0)
+            else if (strcmp(str, "dorm-print-all\n") == 0)
             {
                 dorm_print_all(dorms, idxDorm);
             }
-            else if (strcmp(str, "dorm-print-all-detail") == 0)
+            else if (strcmp(str, "dorm-print-all-detail\n") == 0)
             {
                 dorm_print_all_detail(dorms, idxDorm);
             }
