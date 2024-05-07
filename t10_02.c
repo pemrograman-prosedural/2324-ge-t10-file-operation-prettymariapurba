@@ -8,6 +8,16 @@
 #include <string.h>
 #include <stdlib.h>
 
+// 12S22012 - Reinhard Batubara
+// 12S22001 - Winfrey H.M. Nainggolan
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "./libs/dorm.h"
+#include "./libs/student.h"
+#include "./libs/repository.h"
+
 int main(int _argc, char **_argv)
 {
     char input[100];
@@ -23,16 +33,24 @@ int main(int _argc, char **_argv)
     struct student_t *mhs = malloc(20 * sizeof(struct student_t));
     struct dorm_t *dorms = malloc(20 * sizeof(struct dorm_t));
 
+
     unsigned short int stop = 0;
     unsigned short int size_mhs = 1, prt_std = 0;
     unsigned short int size_dorm = 1, prt_dorm = 0;
     unsigned short int poin_drm, poin_std;
     
+
     FILE *finput_std = fopen("./storage/student-repository.txt", "r");
     FILE *finput_drm = fopen("./storage/dorm-repository.txt", "r");
-  
+
     parse_file_std (finput_std, mhs, &size_mhs, &prt_std, ang_gender);  
     parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
+
+    finput_std = fopen("./storage/student-repository.txt", "a");
+    finput_drm = fopen("./storage/dorm-repository.txt", "a");
+
+    fprintf(finput_std,"\n");
+    fprintf(finput_drm,"\n");
 
     while (stop != 1) {
         fgets(input, sizeof(input), stdin);
@@ -54,8 +72,7 @@ int main(int _argc, char **_argv)
                 fprintf(finput_std,"%s|%s|%s|%s\n",mhs[i].id, mhs[i].name, mhs[i].year, gender_to_text (mhs[i].gender));
 
             }
-            size_mhs++;
-            prt_std++;
+            
 
         }else if(strcmp(command, "student-print-all-detail") == 0){
             student_print_detail(mhs, prt_std);
@@ -79,8 +96,7 @@ int main(int _argc, char **_argv)
 
                 fprintf(finput_drm,"%s|%d|%s\n",dorms[i].name, dorms[i].capacity, gender_to_text (dorms[i].gender));
             }
-            size_dorm++;
-            prt_dorm++;
+        
 
         }else if(strcmp(command, "dorm-print-all-detail") == 0){
             print_all_dorm (dorms, prt_dorm);
@@ -113,3 +129,6 @@ int main(int _argc, char **_argv)
 
     return 0;
 }
+
+
+
