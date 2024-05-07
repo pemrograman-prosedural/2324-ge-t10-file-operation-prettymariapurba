@@ -8,15 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-// 12S22012 - Reinhard Batubara
-// 12S22001 - Winfrey H.M. Nainggolan
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "./libs/dorm.h"
-#include "./libs/student.h"
-#include "./libs/repository.h"
 
 int main(int _argc, char **_argv)
 {
@@ -72,7 +63,8 @@ int main(int _argc, char **_argv)
                 fprintf(finput_std,"%s|%s|%s|%s\n",mhs[i].id, mhs[i].name, mhs[i].year, gender_to_text (mhs[i].gender));
 
             }
-            
+            size_mhs++;
+            prt_std++;
 
         }else if(strcmp(command, "student-print-all-detail") == 0){
             student_print_detail(mhs, prt_std);
@@ -96,7 +88,8 @@ int main(int _argc, char **_argv)
 
                 fprintf(finput_drm,"%s|%d|%s\n",dorms[i].name, dorms[i].capacity, gender_to_text (dorms[i].gender));
             }
-        
+            size_dorm++;
+            prt_dorm++;
 
         }else if(strcmp(command, "dorm-print-all-detail") == 0){
             print_all_dorm (dorms, prt_dorm);
@@ -112,18 +105,14 @@ int main(int _argc, char **_argv)
             poin_drm = 0;
 
             poin_std = get_index_student (mhs, prt_std, data_id);
-
             poin_drm = get_index_dorm (dorms, prt_dorm, data_name);
-            
             assign_student(mhs, dorms, poin_std, poin_drm);
 
         }else if(strcmp(command, "---") == 0){
             stop = 1;
         }
     }
-    
-    fclose(finput_std);
-    fclose(finput_drm);
+
     free(mhs);
     free(dorms);
 
