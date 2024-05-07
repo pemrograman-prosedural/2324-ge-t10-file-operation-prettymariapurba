@@ -30,12 +30,11 @@ int main(int _argc, char **_argv)
     unsigned short int size_dorm = 1, prt_dorm = 0;
     unsigned short int poin_drm, poin_std;
     
-
+ parse_file_std (finput_std, mhs, &size_mhs, &prt_std, ang_gender);  
+    parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
+    
     FILE *finput_std = fopen("./storage/student-repository.txt", "r");
     FILE *finput_drm = fopen("./storage/dorm-repository.txt", "r");
-
-    parse_file_std (finput_std, mhs, &size_mhs, &prt_std, ang_gender);  
-    parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
 
     finput_std = fopen("./storage/student-repository.txt", "a");
     finput_drm = fopen("./storage/dorm-repository.txt", "a");
