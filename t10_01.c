@@ -134,7 +134,6 @@ int main(int _argc, char **_argv)
             }
             else if (strcmp(str, "student-print-all-detail") == 0)
             {
-
                 student_print_all_detail(students, idxStud);
             }
             else if (strcmp(str, "student-print-all") == 0)

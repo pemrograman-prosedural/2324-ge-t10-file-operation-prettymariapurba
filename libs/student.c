@@ -73,7 +73,7 @@ void student_print_all_detail(struct student_t *_students, int _countStudent)
     }
 }
 
-// assign-student#12S22001#Antiokia
+
 void assign_student(struct student_t *_student, struct dorm_t *_dorm, char *id, char *dorm_name, int _countDorm, int _countStudent)
 {
     for (int i = 0; i < _countStudent; i++)
@@ -97,10 +97,6 @@ void assign_student(struct student_t *_student, struct dorm_t *_dorm, char *id, 
         }
     }
 }
-
-
-
-
 
 
 void moving_student(struct student_t *_student, struct dorm_t *_dorm, char *id, char *dorm_name, int _countDorm, int _countStudent)
