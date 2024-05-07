@@ -7,9 +7,3 @@ test_01 :
 
 test_02 :
 	./t10_02
-
-	sha1sum ./storage/student-repository.txt
-    sha1sum ./storage/dorm-repository.txt
-    git restore ./storage/student-repository.txt
-    git restore ./storage/dorm-repository.txt
-
