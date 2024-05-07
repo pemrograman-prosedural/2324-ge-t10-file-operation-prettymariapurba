@@ -62,3 +62,6 @@ int main(int _argc, char **_argv)
     return 0;
 }
 perbaiki kode agar tidak ada output berlebih yaitu --- karena --- merupakan instruksi untuk menghentikan program
+apakah untuk file operation harus menggunakan fclose?
+guna file parse dalam kode program file operationn?
+

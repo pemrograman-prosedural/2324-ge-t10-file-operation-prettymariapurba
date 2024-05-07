@@ -1,6 +1,13 @@
 // 12S23042 - Pretty  Maria
 // 12S23043 - Grace Tiodora
 
+#include <stdio.h>
+#include "./libs/dorm.h"
+#include "./libs/student.h"
+#include "./libs/repository.h"
+#include <string.h>
+#include <stdlib.h>
+
 int main(int _argc, char **_argv)
 {
     char input[100];
@@ -11,7 +18,7 @@ int main(int _argc, char **_argv)
     char data_name[25];
     char data_year[5];
     char data_gender[8];
-    int ang_gender = 0;
+    int no_gender = 0;
 
     struct student_t *mhs = malloc(20 * sizeof(struct student_t));
     struct dorm_t *dorms = malloc(20 * sizeof(struct dorm_t));
@@ -26,8 +33,8 @@ int main(int _argc, char **_argv)
     FILE *finput_std = fopen("./storage/student-repository.txt", "r");
     FILE *finput_drm = fopen("./storage/dorm-repository.txt", "r");
 
-    parse_file_std (finput_std, mhs, &size_mhs, &prt_std, ang_gender);  
-    parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
+    parse_file_std (finput_std, mhs, &size_mhs, &prt_std, no_gender);  
+    parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, no_gender);
 
     finput_std = fopen("./storage/student-repository.txt", "a");
     finput_drm = fopen("./storage/dorm-repository.txt", "a");
@@ -48,10 +55,10 @@ int main(int _argc, char **_argv)
             strcpy(data_year , strtok(NULL, "#"));
             strcpy( data_gender, strtok(NULL, "#"));
 
-            ang_gender = gender_to_value (data_gender);
+            no_gender = gender_to_value (data_gender);
             
             for(int i = prt_std; i<size_mhs; i++){
-                mhs[i] = create_student(data_id, data_name, data_year, ang_gender);
+                mhs[i] = create_student(data_id, data_name, data_year, no_gender);
                 fprintf(finput_std,"%s|%s|%s|%s\n",mhs[i].id, mhs[i].name, mhs[i].year, gender_to_text (mhs[i].gender));
 
             }
@@ -70,14 +77,11 @@ int main(int _argc, char **_argv)
             unsigned short int capacity;
             strcpy(data_year , strtok(NULL, "#"));
             capacity = atoi(data_year);
-
             strcpy( data_gender, strtok(NULL, "#"));
-
-            ang_gender = gender_to_value (data_gender);
+            no_gender = gender_to_value (data_gender);
 
             for(int i = prt_dorm; i<size_dorm; i++){
-                dorms[i] = create_dorm(data_id, capacity, ang_gender);
-
+                dorms[i] = create_dorm(data_id, capacity, no_gender);
                 fprintf(finput_drm,"%s|%d|%s\n",dorms[i].name, dorms[i].capacity, gender_to_text (dorms[i].gender));
             }
             size_dorm++;
@@ -97,9 +101,7 @@ int main(int _argc, char **_argv)
             poin_drm = 0;
 
             poin_std = get_index_student (mhs, prt_std, data_id);
-
             poin_drm = get_index_dorm (dorms, prt_dorm, data_name);
-            
             assign_student(mhs, dorms, poin_std, poin_drm);
 
         }else if(strcmp(command, "---") == 0){
@@ -113,6 +115,5 @@ int main(int _argc, char **_argv)
     free(dorms);
 
     return 0;
-}
 }
 
