@@ -30,17 +30,15 @@ int main(int _argc, char **_argv)
     unsigned short int size_dorm = 1, prt_dorm = 0;
     unsigned short int poin_drm, poin_std;
     
- parse_file_std (finput_std, mhs, &size_mhs, &prt_std, ang_gender);  
-    parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
-    
+
     FILE *finput_std = fopen("./storage/student-repository.txt", "r");
     FILE *finput_drm = fopen("./storage/dorm-repository.txt", "r");
 
+    parse_file_std (finput_std, mhs, &size_mhs, &prt_std, ang_gender);  
+    parse_file_drm ( finput_drm, dorms, &size_dorm, &prt_dorm, ang_gender);
+
     finput_std = fopen("./storage/student-repository.txt", "a");
     finput_drm = fopen("./storage/dorm-repository.txt", "a");
-
-    fprintf(finput_std,"\n");
-    fprintf(finput_drm,"\n");
 
     while (stop != 1) {
         fgets(input, sizeof(input), stdin);
@@ -77,7 +75,6 @@ int main(int _argc, char **_argv)
             unsigned short int capacity;
             strcpy(data_year , strtok(NULL, "#"));
             capacity = atoi(data_year);
-
             strcpy( data_gender, strtok(NULL, "#"));
 
             ang_gender = gender_to_value (data_gender);
@@ -99,9 +96,6 @@ int main(int _argc, char **_argv)
         }else if(strcmp(command, "assign-student") == 0){
             strcpy(data_id ,strtok(NULL, "#"));
             strcpy(data_name, strtok(NULL, "#"));
-            
-            poin_std = 0;
-            poin_drm = 0;
 
             poin_std = get_index_student (mhs, prt_std, data_id);
             poin_drm = get_index_dorm (dorms, prt_dorm, data_name);
