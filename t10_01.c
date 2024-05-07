@@ -54,6 +54,8 @@ int main(int _argc, char **_argv)
         }
     }
     
+    free(mhs);
+    free(dorms);
 
     return 0;
 }
